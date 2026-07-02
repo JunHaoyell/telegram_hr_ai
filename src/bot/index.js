@@ -119,11 +119,17 @@ bot.on("text", async (ctx) => {
      * STEP 4 AI
      */
     if (session.step === "AUTHENTICATED") {
+
+      // 先提示用户
+      await ctx.reply("🤔 AI 正在思考，请稍候...");
+
+      // 调 AI
       const answer = await aiController.handleUserQuestion(
         session.employee,
         message
       );
 
+      // 返回答案
       return ctx.reply(answer);
     }
 
